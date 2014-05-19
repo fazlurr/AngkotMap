@@ -16,11 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class LocationActivity extends ListActivity implements OnClickListener {
-	Integer optionCode;
-	ListView locationList;
-	DatabaseHelper myDbHelper = null;
-	DBLocation dbLocation;
-	ArrayList<Location> locations;
+	private Integer optionCode;
+	private ListView locationList;
+	private DatabaseHelper myDbHelper = null;
+	private DBLocation dbLocation;
+	private ArrayList<Location> locations;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,6 @@ public class LocationActivity extends ListActivity implements OnClickListener {
 			public void onItemClick(AdapterView<?> av, View v, int position, long id) {
 				// TODO Auto-generated method stub
 				Location location= (Location) getListAdapter().getItem(position);
-			    Log.v("Selected List", location.getName());
 			    Intent i = new Intent();
 			    if (optionCode == MainActivity.FROM_LOCATION_REQUEST) {
 			    	i.putExtra(MainActivity.FROM, location.getId());

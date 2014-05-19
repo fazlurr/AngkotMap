@@ -30,6 +30,7 @@ public class MapActivity extends FragmentActivity {
 	private SupportMapFragment fragment;
 	private LatLngBounds latlngBounds;
 	private Polyline newPolyline;
+	private PolylineOptions rectLine;
 	private int width, height;
 	private long fromPositionID, toPositionID;
 	
@@ -37,6 +38,8 @@ public class MapActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
+		
+		rectLine = new PolylineOptions().width(5).color(Color.RED);
 		
 		// Get from position id and to position id from main activity
 		Bundle bun = this.getIntent().getExtras();
@@ -66,8 +69,6 @@ public class MapActivity extends FragmentActivity {
 	}
 
 	public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) {
-		PolylineOptions rectLine = new PolylineOptions().width(5).color(Color.RED);
-
 		for(int i = 0 ; i < directionPoints.size() ; i++)
 		{          
 			rectLine.add(directionPoints.get(i));

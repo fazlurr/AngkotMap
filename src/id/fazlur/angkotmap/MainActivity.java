@@ -3,7 +3,6 @@ package id.fazlur.angkotmap;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -84,7 +83,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	        Bundle bun = new Bundle();
 	        bun.putLong(FROM, locationFromID);
 	        bun.putLong(TO, locationToID);
-	        Log.v("info", "The Bundle : "+ bun);
 	        i.putExtras(bun);
 	        startActivity(i);
 		}
