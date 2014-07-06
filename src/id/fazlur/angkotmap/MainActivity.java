@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
-
 	public static final int FROM_LOCATION_REQUEST = 1;
 	public static final int TO_LOCATION_REQUEST = 2;
 	public static final String FROM = "FROM";
@@ -18,7 +17,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private String locationFromName = "";
 	private String locationToName = "";
 	private Button btnSearch, btnFrom, btnTo;
-	private long locationFromID = 0, locationToID = 0;
+	private long locationIdFrom = 0, locationIdTo = 0;
+	private boolean isLocationFromSelected = false, isLocationToSelected = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		// getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
@@ -45,7 +45,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 	        case R.id.mainBtnSearch:
-	    		switchToMap();
+	    		switchToResult();
 	            break;
 	        case R.id.mainBtnFrom:
 	        	switchToLocation(FROM_LOCATION_REQUEST);
@@ -62,27 +62,32 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (requestCode == FROM_LOCATION_REQUEST) {
 	        if (resultCode == RESULT_OK) {
-	        	locationFromID = data.getLongExtra(MainActivity.FROM, 0);
+	        	locationIdFrom = data.getLongExtra(MainActivity.FROM, 0);
+
 	        	locationFromName = data.getStringExtra("LOCATION_NAME");
 	        	btnFrom.setText(locationFromName);
+	        	
+	        	isLocationFromSelected = true;
 	        }
 	    }
 	    else if (requestCode == TO_LOCATION_REQUEST) {
 	    	if (resultCode == RESULT_OK) {
-	    		locationToID = data.getLongExtra(MainActivity.TO, 0);
+	    		locationIdTo = data.getLongExtra(MainActivity.TO, 0);
 	    		locationToName = data.getStringExtra("LOCATION_NAME");
 	    		btnTo.setText(locationToName);
+	    		
+	    		isLocationToSelected = true;
 	        }
 	    }
 	}
 	
-	public void switchToMap()
+	public void switchToResult()
     {
-		if (locationFromID != 0 && locationToID != 0) {
-			Intent i = new Intent(getBaseContext(), MapActivity.class);
+		if (isLocationFromSelected == true && isLocationToSelected == true) {
+			Intent i = new Intent(getBaseContext(), ResultActivity.class);
 	        Bundle bun = new Bundle();
-	        bun.putLong(FROM, locationFromID);
-	        bun.putLong(TO, locationToID);
+	        bun.putLong(FROM, locationIdFrom);
+	        bun.putLong(TO, locationIdTo);
 	        i.putExtras(bun);
 	        startActivity(i);
 		}

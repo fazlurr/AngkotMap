@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/resultRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+		<ListView
+		    android:id="@android:id/list"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginBottom="48dp" >
+
+		</ListView>
+    
+       	<ImageButton
+           	android:id="@+id/resultBtnMap"
+           	style="?android:buttonBarButtonStyle"
+           	android:layout_width="match_parent"
+           	android:layout_height="wrap_content"
+           	android:layout_alignParentBottom="true"
+           	android:layout_alignParentLeft="true"
+           	android:layout_alignParentRight="true"
+           	android:layout_margin="0dp"
+           	android:background="@drawable/button_main_green"
+           	android:src="@drawable/ic_action_map"
+           	android:contentDescription="@string/show_map"/>
+
+</RelativeLayout>

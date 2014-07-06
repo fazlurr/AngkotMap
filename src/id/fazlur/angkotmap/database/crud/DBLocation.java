@@ -1,5 +1,6 @@
 package id.fazlur.angkotmap.database.crud;
 
+import id.fazlur.angkotmap.R;
 import id.fazlur.angkotmap.database.helper.HelperLocation;
 import id.fazlur.angkotmap.database.model.Location;
 
@@ -12,6 +13,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DBLocation {
+	private Context context;
 	private SQLiteDatabase database;
 	 
     // inisialisasi kelas DBHelper
@@ -27,6 +29,7 @@ public class DBLocation {
     // DBHelper diinstantiasi pada constructor
     public DBLocation(Context context)
     {
+    	this.context = context;
         helper = new HelperLocation(context);
     }
  
@@ -94,13 +97,21 @@ public class DBLocation {
     //mengambil semua data
     public ArrayList<Location> getAll() {
         ArrayList<Location> locList = new ArrayList<Location>();
-     
+
+        String orderByFilter = HelperLocation.COLUMN_NAME + " ASC";
+        
         // select all SQL query
-        Cursor cursor = database.query(HelperLocation.TABLE_NAME, allColumns, null, null, null, null, null);
+        Cursor cursor = database.query(HelperLocation.TABLE_NAME, allColumns, null, null, null, null, orderByFilter);
      
         // pindah ke data paling pertama
         cursor.moveToFirst();
-        // jika masih ada data, masukkan data barang ke daftar barang
+        
+        // masukkan my location ke daftar lokasi
+        Location myLocation = new Location(0, context.getResources().getString(R.string.my_location), null, null);
+        
+        locList.add(myLocation);
+        
+        // jika masih ada data, masukkan data lokasi ke daftar lokasi
         while (!cursor.isAfterLast()) {
         	Location loc = cursorToObject(cursor);
         	locList.add(loc);

@@ -10,30 +10,28 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-public class GetDirectionsAsyncTask extends AsyncTask<Map<String, String>, Object, ArrayList<LatLng>>
+public class GetDirections extends AsyncTask<Map<String, String>, Object, ArrayList<LatLng>>
 {
     public static final String USER_CURRENT_LAT = "user_current_lat";
     public static final String USER_CURRENT_LONG = "user_current_long";
     public static final String DESTINATION_LAT = "destination_lat";
     public static final String DESTINATION_LONG = "destination_long";
     public static final String DIRECTIONS_MODE = "directions_mode";
-    public static final String LOCATIONS = "locations";
-    private String waypoints;
     private MapActivity activity;
     private Exception exception;
     private ProgressDialog progressDialog;
+	private String waypoints;
  
-    public GetDirectionsAsyncTask(MapActivity activity, String waypoints)
+    public GetDirections(MapActivity activity)
     {
         super();
         this.activity = activity;
-        this.waypoints = waypoints;
     }
  
     public void onPreExecute()
     {
         progressDialog = new ProgressDialog(activity);
-        progressDialog.setMessage("Getting directions..");
+        progressDialog.setMessage("Calculating directions");
         progressDialog.show();
     }
  

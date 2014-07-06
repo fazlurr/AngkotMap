@@ -6,6 +6,16 @@ public class Location {
 	private Double lat ;
 	private Double lng;
 	
+	public Location(){
+		
+	}
+	
+	public Location(long id, String name, Double lat, Double lng){
+		this.id = id;
+		this.name = name;
+		this.lat = lat;
+		this.lng = lng;
+	}
 	
 	public long getId() {
 		return id;

@@ -26,12 +26,19 @@ public class GMapV2Direction {
 
     public GMapV2Direction() { }
 
-    public Document getDocument(LatLng start, LatLng end, String mode) {
+    public Document getDocument(LatLng start, LatLng end, String mode, String waypoints) {
         String url = "http://maps.googleapis.com/maps/api/directions/xml?" 
                 + "origin=" + start.latitude + "," + start.longitude  
-                + "&destination=" + end.latitude + "," + end.longitude 
+                + "&destination=" + end.latitude + "," + end.longitude
                 + "&sensor=false&units=metric&mode=driving";
-
+        
+        @SuppressWarnings("unused")
+		String urlWaypoints = "http://maps.googleapis.com/maps/api/directions/xml?" 
+                + "origin=" + start.latitude + "," + start.longitude  
+                + "&destination=" + end.latitude + "," + end.longitude
+                + "&waypoints=" + waypoints
+                + "&sensor=false&units=metric&mode=driving";
+        
         try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpContext localContext = new BasicHttpContext();

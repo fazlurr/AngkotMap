@@ -51,7 +51,30 @@
         </activity>
         <activity
             android:name="id.fazlur.angkotmap.LocationActivity"
-            android:label="@string/from" >
+            android:label="@string/from"
+            android:parentActivityName="id.fazlur.angkotmap.MainActivity" >
+	        <!-- Parent activity meta-data to support 4.0 and lower -->
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value="id.fazlur.angkotmap.MainActivity" />
+        </activity>
+        <activity
+            android:name="id.fazlur.angkotmap.StepActivity"
+            android:label="@string/route"
+            android:parentActivityName="id.fazlur.angkotmap.ResultActivity" >
+	        <!-- Parent activity meta-data to support 4.0 and lower -->
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value="id.fazlur.angkotmap.ResultActivity" />
+        </activity>
+        <activity
+            android:name="id.fazlur.angkotmap.ResultActivity"
+            android:label="@string/results"
+            android:parentActivityName="id.fazlur.angkotmap.MainActivity" >
+	        <!-- Parent activity meta-data to support 4.0 and lower -->
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value="id.fazlur.angkotmap.MainActivity" />
         </activity>
     </application>
 

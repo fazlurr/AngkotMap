@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Angkot Map</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="search">Cari</string>
+    <string name="from">Dari</string>
+    <string name="to">Ke</string>
+    <string name="location">Lokasi</string>
+    <string name="start_search">Mulai Pencarian</string>
+    <string name="results">Hasil Pencarian</string>
+    <string name="show_map">Buka Peta</string>
+    <string name="my_location">Lokasi Saya</string>
+    <string name="route">Rute</string>
+</resources>

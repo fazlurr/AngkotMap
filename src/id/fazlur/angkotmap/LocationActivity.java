@@ -27,6 +27,8 @@ public class LocationActivity extends ListActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
 		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		Bundle bun = this.getIntent().getExtras();
 		
 		optionCode = bun.getInt("OPTION_CODE");
