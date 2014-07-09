@@ -1,8 +1,18 @@
 package id.fazlur.angkotmap;
 
+import java.util.ArrayList;
+
+import id.fazlur.angkotmap.database.crud.DBLocation;
+import id.fazlur.angkotmap.database.model.Location;
+import id.fazlur.angkotmap.library.GPSTracker;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.SphericalUtil;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +29,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button btnSearch, btnFrom, btnTo;
 	private long locationIdFrom = 0, locationIdTo = 0;
 	private boolean isLocationFromSelected = false, isLocationToSelected = false;
+	private DBLocation dbLocation;
+	private ArrayList<Location> allLocations;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +96,24 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void switchToResult()
     {
 		if (isLocationFromSelected == true && isLocationToSelected == true) {
+			
+			if ( locationIdFrom == 0 )
+	        {
+	        	locationIdFrom = getNearLocationId();
+	        }
+	        
+			if ( locationIdTo == 0)
+	        {
+	        	locationIdTo = getNearLocationId();
+	        }
+			
 			Intent i = new Intent(getBaseContext(), ResultActivity.class);
 	        Bundle bun = new Bundle();
 	        bun.putLong(FROM, locationIdFrom);
 	        bun.putLong(TO, locationIdTo);
 	        i.putExtras(bun);
 	        startActivity(i);
+			
 		}
 		else {
 			Toast.makeText(this, "Harap pilih lokasi From dan To", Toast.LENGTH_SHORT).show();
@@ -104,5 +128,72 @@ public class MainActivity extends Activity implements OnClickListener {
         i.putExtras(bun);
         startActivityForResult(i, n);
     }
+	
+	public Long getNearLocationId() {
+		Location nearLocation = new Location(), currentLocation = new Location();
+		LatLng latLngFrom = null, latLngTo = null;
+		
+		currentLocation = getCurrentLocation();
+		
+		Log.v("info", "Current Lat : " + currentLocation.getLat() + ", Current Long : " + currentLocation.getLng());
+		
+		latLngFrom = new LatLng(currentLocation.getLat(), currentLocation.getLng());
+		
+		dbLocation = new DBLocation(this);
+	 	
+	 	dbLocation.open();
+	 	
+	 	allLocations = dbLocation.getAll();
+	 	
+	 	double smallestDistance = 0;
+	 	
+	 	int i = 0;
+	 	
+	 	for (Location location : allLocations) {
+	 		
+			latLngTo = new LatLng(location.getLat(), location.getLng());
+			
+			double distance = SphericalUtil.computeDistanceBetween(latLngFrom, latLngTo);
+
+			if ( i == 0 ) {
+				smallestDistance = distance;
+				nearLocation = location;
+			}
+			
+			if (distance < smallestDistance){
+				smallestDistance = distance;
+				nearLocation = location;
+			}
+						
+			i++;
+		}
+		
+	 	Log.v("info", "Nearest location : " + nearLocation.getName());
+	 	
+		return nearLocation.getId();
+	}
+	
+	public Location getCurrentLocation() {
+		Location currentLocation = new Location(0, "My Location", 0, 0);
+		
+		// check if GPS enabled
+        GPSTracker gpsTracker = new GPSTracker(this);
+
+        if (gpsTracker.canGetLocation())
+        {            
+            currentLocation.setName("My Location");
+    		currentLocation.setLat(gpsTracker.getLatitude());
+    		currentLocation.setLng(gpsTracker.getLongitude());
+        }
+        else
+        {
+            // Can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gpsTracker.showSettingsAlert();
+        }
+		
+		return currentLocation;
+	}
 
 }

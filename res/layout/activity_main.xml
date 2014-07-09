@@ -28,18 +28,6 @@
         android:layout_marginRight="10dp"
         android:orientation="vertical" >
 
-        <!--<Spinner
-            android:id="@+id/mainSpinnerFrom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/locations" />
-
-        <Spinner
-            android:id="@+id/mainSpinnerTo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/locations" />-->
-
         <TextView
             android:id="@+id/mainTextFrom"
             android:layout_width="wrap_content"

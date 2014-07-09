@@ -67,7 +67,7 @@ public class MapActivity extends FragmentActivity {
 	    fragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
 		map = fragment.getMap();
 		
-		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		map.setMyLocationEnabled(true);
 		
 		// Load all placemarks (places of interest)
@@ -92,9 +92,7 @@ public class MapActivity extends FragmentActivity {
         dbRoute.open();
         
         route = dbRoute.getById(routeId);
-        
-        dbRoute.close();
-        
+                
         String routeDirections = route.getDirections();
 		
 		String[] routeLatLng = routeDirections.split(" ");
@@ -143,11 +141,14 @@ public class MapActivity extends FragmentActivity {
 			Log.v("info", "Location Lat: "+ location.getLat());
 			Log.v("info", "Location Lang: "+ location.getLng());
 			
-			LatLng placeMarkPoint = new LatLng(location.getLat(), location.getLng());
-			
-			map.addMarker(new MarkerOptions()
+			if (location.getId() != 0)
+			{
+				LatLng placeMarkPoint = new LatLng(location.getLat(), location.getLng());
+				
+				map.addMarker(new MarkerOptions()
                 .title(location.getName())
                 .position(placeMarkPoint));
+			}
 			
 		}
 	}

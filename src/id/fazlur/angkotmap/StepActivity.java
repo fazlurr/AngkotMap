@@ -6,16 +6,17 @@ import id.fazlur.angkotmap.database.model.Route;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ListAdapter;
 
 public class StepActivity extends ListActivity implements OnClickListener {
 	
 	private Long routeId;
-	private ImageButton btnShowMap;
 	private DBRoute dbRoute;
 	private Route route;
 	
@@ -41,21 +42,31 @@ public class StepActivity extends ListActivity implements OnClickListener {
         
         setListAdapter(adapter);
         
-//        String loadedJSON = loadJSONFromAsset();
-//        
-//        if (loadedJSON != "" & loadedJSON != null){
-//        	
-//        }
-        
-        btnShowMap = (ImageButton) this.findViewById(R.id.resultBtnMap);
-        btnShowMap.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.resultBtnMap) {
-			switchToMap();
-		}
+		
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.activity_step_actions, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.action_show_map:
+	            switchToMap();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 	public void switchToMap() {

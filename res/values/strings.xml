@@ -10,7 +10,12 @@
     <string name="start_search">Start Search</string>
     <string name="results">Search Results</string>
     <string name="show_map">Show Map</string>
-    <string name="my_location">My Location</string>
     <string name="route">Route</string>
-
+	<string name="action_map_directions">Map Directions</string>
+	<string name="settings">Pengaturan</string>
+	<string name="cancel">Cancel</string>
+	<string name="my_location">My Location</string>
+	<string name="gps_alertdialog_title">Activate GPS</string>
+	<string name="gps_alertdialog_content">GPS is currently disabled. You must enable GPS if you choose My Location</string>
+	
 </resources>

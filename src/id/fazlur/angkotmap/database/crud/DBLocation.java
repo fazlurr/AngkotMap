@@ -107,7 +107,7 @@ public class DBLocation {
         cursor.moveToFirst();
         
         // masukkan my location ke daftar lokasi
-        Location myLocation = new Location(0, context.getResources().getString(R.string.my_location), null, null);
+        Location myLocation = new Location(0, context.getResources().getString(R.string.my_location), 0, 0);
         
         locList.add(myLocation);
         

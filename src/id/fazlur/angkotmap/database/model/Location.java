@@ -3,14 +3,14 @@ package id.fazlur.angkotmap.database.model;
 public class Location {
 	private long id;
 	private String name;
-	private Double lat ;
-	private Double lng;
+	private double lat ;
+	private double lng;
 	
 	public Location(){
 		
 	}
 	
-	public Location(long id, String name, Double lat, Double lng){
+	public Location(long id, String name, double lat, double lng){
 		this.id = id;
 		this.name = name;
 		this.lat = lat;

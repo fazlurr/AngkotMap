@@ -61,7 +61,6 @@ public class LocationActivity extends ListActivity implements OnClickListener {
         locationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> av, View v, int position, long id) {
-				// TODO Auto-generated method stub
 				Location location= (Location) getListAdapter().getItem(position);
 			    Intent i = new Intent();
 			    if (optionCode == MainActivity.FROM_LOCATION_REQUEST) {

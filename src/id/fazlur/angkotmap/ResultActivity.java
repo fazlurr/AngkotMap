@@ -40,6 +40,8 @@ public class ResultActivity extends ListActivity implements OnClickListener {
         
         routes = dbRoute.getResult(locationIdFrom, locationIdTo);
         
+        dbRoute.close();
+        
         ListAdapter adapter = new ArrayAdapter<Route>(this, android.R.layout.simple_list_item_1, routes);
         
         setListAdapter(adapter);
@@ -65,4 +67,5 @@ public class ResultActivity extends ListActivity implements OnClickListener {
         i.putExtras(bun);
         startActivity(i);
     }
+	
 }

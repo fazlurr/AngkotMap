@@ -9,6 +9,12 @@
     <string name="start_search">Mulai Pencarian</string>
     <string name="results">Hasil Pencarian</string>
     <string name="show_map">Buka Peta</string>
-    <string name="my_location">Lokasi Saya</string>
     <string name="route">Rute</string>
+    <string name="action_map_directions">Peta Jalur</string>
+    <string name="settings">Pengaturan</string>
+    <string name="cancel">Batalkan</string>
+    <string name="my_location">Lokasi Saya</string>
+    <string name="gps_alertdialog_title">Activate GPS</string>
+	<string name="gps_alertdialog_content">GPS anda tidak aktif. Anda harus mengaktikan GPS jika ingin memilih &quot;Lokasi Saya&quot;</string>
+    
 </resources>

@@ -9,11 +9,12 @@
 		    android:id="@android:id/list"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_marginBottom="48dp" >
+		    android:layout_marginBottom="48dp"
+		    android:fontFamily="sans-serif-light"  >
 
 		</ListView>
     
-       	<ImageButton
+       	<!-- <ImageButton
            	android:id="@+id/resultBtnMap"
            	style="?android:buttonBarButtonStyle"
            	android:layout_width="match_parent"
@@ -24,6 +25,6 @@
            	android:layout_margin="0dp"
            	android:background="@drawable/button_main_green"
            	android:src="@drawable/ic_action_map"
-           	android:contentDescription="@string/show_map"/>
+           	android:contentDescription="@string/show_map"/>  -->
 
 </RelativeLayout>
