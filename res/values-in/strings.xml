@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Angkot Map</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="search">Cari</string>
+    <string name="from">Dari</string>
+    <string name="to">Ke</string>
+    <string name="location">Lokasi</string>
+    <string name="start_search">Mulai Pencarian</string>
+    <string name="results">Hasil Pencarian</string>
+    <string name="show_map">Buka Peta</string>
+    <string name="route">Rute</string>
+    <string name="action_map_directions">Peta Jalur</string>
+    <string name="settings">Pengaturan</string>
+    <string name="cancel">Batalkan</string>
+    <string name="my_location">Lokasi Saya</string>
+    <string name="gps_alertdialog_title">Activate GPS</string>
+	<string name="gps_alertdialog_content">GPS anda tidak aktif. Anda harus mengaktikan GPS jika ingin memilih &quot;Lokasi Saya&quot;</string>
+    <string name="search_locations">Cari Lokasi</string>
+    <string name="angkot_image">Gambar Angkot</string>
+    <string name="angkot_number">Nomor Angkot</string>
+	<string name="angkot_color">Warna Angkot</string>
+	<string name="angkot_time">Jam Operasional</string>
+</resources>

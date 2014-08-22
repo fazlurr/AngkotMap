@@ -4,6 +4,7 @@ public class Angkot {
 	private long id;
 	private String name;
 	private String description;
+	private String time;
 	
 	public long getId() {
 		return id;
@@ -22,5 +23,11 @@ public class Angkot {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 }

@@ -15,13 +15,6 @@ public class HelperTrack extends SQLiteOpenHelper {
     private static final String DB_NAME = DbConst.NAME;
     private static final int DB_VERSION = DbConst.VERSION;
     
-    @SuppressWarnings("unused")
-	private static final String DB_CREATE = "create table "
-    		+ TABLE_NAME + "("
-            + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_CONNECTION_ID + " integer(11) not null, "
-            + COLUMN_ANGKOT_ID + " varchar(20) not null); "; 
-    
     public HelperTrack(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         // Auto generated

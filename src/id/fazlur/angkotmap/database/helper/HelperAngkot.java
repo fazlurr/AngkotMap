@@ -12,15 +12,9 @@ public class HelperAngkot extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_DESCRIPTION = "description";
+    public static final String COLUMN_TIME = "time";
     private static final String DB_NAME = DbConst.NAME;
     private static final int DB_VERSION = DbConst.VERSION;
-    
-    @SuppressWarnings("unused")
-	private static final String DB_CREATE = "create table "
-    		+ TABLE_NAME + "("
-            + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_NAME + " varchar(5) not null, "
-            + COLUMN_DESCRIPTION + " varchar(50) not null); "; 
     
     public HelperAngkot(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

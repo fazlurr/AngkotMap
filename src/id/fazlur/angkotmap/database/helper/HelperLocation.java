@@ -14,15 +14,7 @@ public class HelperLocation extends SQLiteOpenHelper {
     public static final String COLUMN_LAT = "lat";
     public static final String COLUMN_LNG = "lng";
     private static final String DB_NAME = DbConst.NAME;
-    private static final int DB_VERSION = DbConst.VERSION;
-    
-    @SuppressWarnings("unused")
-	private static final String DB_CREATE = "create table "
-    		+ TABLE_NAME + "("
-            + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_NAME + " varchar(50) not null, "
-            + COLUMN_LAT + " varchar(20) not null, "
-            + COLUMN_LNG + " varchar(20) not null); "; 
+    private static final int DB_VERSION = DbConst.VERSION; 
     
     public HelperLocation(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

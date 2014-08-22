@@ -25,7 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-public class StepActivity extends ListActivity {
+public class Step2Activity extends ListActivity {
 	
 	public static final String WALK = "Jalan kaki ";
 	public static final String FROM = "dari ";
@@ -85,10 +85,8 @@ public class StepActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String item = (String) getListAdapter().getItem(position);
 		String[] splittedItem = item.split(" ");
-		if (splittedItem[0].matches("Naik")) {
-			String angkotName = splittedItem[1];
-			switchToAngkot(angkotName);
-		}
+		String angkotName = splittedItem[1];
+		switchToAngkot(angkotName);
 	}
 	
 	@Override
@@ -131,7 +129,6 @@ public class StepActivity extends ListActivity {
 		Location locationFrom, locationTo;
 		
 		int i = 0;
-		
 		long prevAngkotId = 0;
 		long nextAngkotId = 0;
 		
@@ -146,7 +143,7 @@ public class StepActivity extends ListActivity {
 			
 			Log.v("Steps Count", String.valueOf(splittedSteps.length));
 			
-			if ( j+1 <= splittedSteps.length - 1) {
+			if ( j+1 <= splittedSteps.length ) {
 				// if not the last step
 				long nextTrackId = Long.valueOf(splittedSteps[j+1]);
 				Track nextTrack = dbTrack.getById(nextTrackId);
@@ -167,18 +164,17 @@ public class StepActivity extends ListActivity {
 				String stepContentOn = GET_ON + angkot.getName() + " " + AT + locationFrom.getName();
 				stepsDescription.add(stepContentOn);
 			}
-			else if ( (prevAngkotId != angkot.getId()) ) {
-				// if not the first step and the current angkot is not same with previous angkot, then take the next angkot
-				String stepContentOn = GET_ON + angkot.getName() + " " + AT + locationFrom.getName();
-				stepsDescription.add(stepContentOn);
-			}
-			
-			if ( j == splittedSteps.length - 1 || ( angkot.getId() != nextAngkotId )) {
+			else if ( j == splittedSteps.length - 1 || ( angkot.getId() != nextAngkotId )) {
 				// if it is the last step or the next angkot is difference, then get off
 				String stepContentOff = GET_OFF + AT + locationTo.getName();
 				stepsDescription.add(stepContentOff);
 			}
-			
+			else if ( (prevAngkotId != angkot.getId()) ) {
+				// if the current angkot is not same with previous angkot, then take the next angkot
+				String stepContentOn = GET_ON + angkot.getName() + " " + AT + locationFrom.getName();
+				stepsDescription.add(stepContentOn);
+				
+			}
 			else if ( (prevAngkotId == angkot.getId()) ) {
 				// if the current angkot is same with previous angkot	
 				

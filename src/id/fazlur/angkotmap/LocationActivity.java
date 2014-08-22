@@ -8,26 +8,31 @@ import id.fazlur.angkotmap.database.model.Location;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class LocationActivity extends ListActivity implements OnClickListener {
 	private Integer optionCode;
 	private ListView locationList;
-	private DatabaseHelper myDbHelper = null;
+	private DatabaseHelper myDbHelper;
 	private DBLocation dbLocation;
 	private ArrayList<Location> locations;
+	private ArrayAdapter<Location> adapter;
+	private EditText inputSearch;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
 		
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		inputSearch = (EditText) findViewById(R.id.inputSearch);
 		
 		Bundle bun = this.getIntent().getExtras();
 		
@@ -51,7 +56,7 @@ public class LocationActivity extends ListActivity implements OnClickListener {
 	 	
 	 	locations = dbLocation.getAll();
 	 	
-	 	ArrayAdapter<Location> adapter = new ArrayAdapter<Location>(this, android.R.layout.simple_list_item_1, locations);
+	 	adapter = new ArrayAdapter<Location>(this, android.R.layout.simple_list_item_1, locations);
 
         adapter.notifyDataSetChanged();
         
@@ -72,6 +77,28 @@ public class LocationActivity extends ListActivity implements OnClickListener {
 			    i.putExtra("LOCATION_NAME", location.getName());
 			    setResult(RESULT_OK, i);
 			    finish();
+			}
+        });
+        
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                LocationActivity.this.adapter.getFilter().filter(cs);   
+            }
+             
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                    int arg3) {
+                // TODO Auto-generated method stub
+                 
+            }
+
+			@Override
+			public void afterTextChanged(Editable arg0) {
+				// TODO Auto-generated method stub
+				
 			}
         });
         

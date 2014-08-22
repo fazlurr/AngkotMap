@@ -17,15 +17,6 @@ public class HelperRoute extends SQLiteOpenHelper {
     private static final String DB_NAME = DbConst.NAME;
     private static final int DB_VERSION = DbConst.VERSION;
     
-//    @SuppressWarnings("unused")
-//	private static final String DB_CREATE = "create table "
-//    		+ TABLE_NAME + "("
-//            + COLUMN_ID + " integer primary key autoincrement, "
-//            + COLUMN_LOCATION_ID_FROM + " integer(11) not null, "
-//            + COLUMN_LOCATION_ID_TO + " integer(11) not null, "
-//            + COLUMN_STEPS + " varchar(100), "
-//            + COLUMN_DIRECTIONS + " text); "; 
-    
     public HelperRoute(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }

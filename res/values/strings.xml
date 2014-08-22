@@ -17,5 +17,12 @@
 	<string name="my_location">My Location</string>
 	<string name="gps_alertdialog_title">Activate GPS</string>
 	<string name="gps_alertdialog_content">GPS is currently disabled. You must enable GPS if you choose My Location</string>
-	
+	<string name="text_step_icon">Step Icon</string>
+	<string name="text_step_description">Step Description</string>
+	<string name="search_locations">Search Locations</string>
+	<string name="angkot">Angkot</string>
+	<string name="angkot_image">Angkot Image</string>
+	<string name="angkot_number">Angkot Number</string>
+	<string name="angkot_color">Angkot Color</string>
+	<string name="angkot_time">Angkot Time</string>
 </resources>

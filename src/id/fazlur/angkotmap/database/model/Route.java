@@ -7,6 +7,22 @@ public class Route {
 	private String steps;
 	private String directions;
 	
+	public Route(long id, long location_id_from, long location_id_to, String steps, String directions) {
+		this.id = id;
+		this.location_id_from = location_id_from;
+		this.location_id_to = location_id_to;
+		this.steps = steps;
+		this.directions = directions;
+	}
+	
+	public Route(long id) {
+		this.id = id;
+	}
+	
+	public Route() {
+		
+	}
+	
 	public long getId() {
 		return id;
 	}

@@ -2,7 +2,6 @@ package id.fazlur.angkotmap.database.crud;
 
 import id.fazlur.angkotmap.database.helper.HelperConnection;
 import id.fazlur.angkotmap.database.model.Connection;
-import id.fazlur.angkotmap.database.model.Node;
 
 import java.util.ArrayList;
 
@@ -68,17 +67,6 @@ public class DBConnection {
         return con;
     }
     
-    private Node cursorToNode(Cursor cursor) {
-    	Node node = new Node();
-        
-    	node.setId(cursor.getLong(0));
-    	node.setLocation_id_from(cursor.getLong(1));
-    	node.setLocation_id_to(cursor.getLong(2));
-    	node.setLength(cursor.getLong(3));
-
-    	return node;
-    }
-    
     public ArrayList<Connection> getAll() {
         ArrayList<Connection> conList = new ArrayList<Connection>();
         
@@ -94,23 +82,6 @@ public class DBConnection {
         
         cursor.close();
         return conList;
-    }
-    
-    public ArrayList<Node> getAllNodes() {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-
-        Cursor cursor = database.query(HelperConnection.TABLE_NAME, allColumns, null, null, null, null, null);
-
-        cursor.moveToFirst();
-
-        while (!cursor.isAfterLast()) {
-        	Node node = cursorToNode(cursor);
-        	nodes.add(node);
-        	cursor.moveToNext();
-        }
-
-        cursor.close();
-        return nodes;
     }
     
     public boolean isExists() {

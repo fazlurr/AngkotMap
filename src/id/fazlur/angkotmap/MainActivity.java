@@ -24,11 +24,13 @@ public class MainActivity extends Activity implements OnClickListener {
 	public static final int TO_LOCATION_REQUEST = 2;
 	public static final String FROM = "FROM";
 	public static final String TO = "TO";
+	public static final String IS_FROM_MY_LOCATION = "is_from_my_location";
+	public static final String IS_TO_MY_LOCATION = "is_to_my_location";
 	private String locationFromName = "";
 	private String locationToName = "";
 	private Button btnSearch, btnFrom, btnTo;
-	private long locationIdFrom = 0, locationIdTo = 0;
-	private boolean isLocationFromSelected = false, isLocationToSelected = false;
+	private long locationIdFrom, locationIdTo;
+	private boolean isLocationFromSelected = false, isLocationToSelected = false, isFromMyLocation = false, isToMyLocation = false;
 	private DBLocation dbLocation;
 	private ArrayList<Location> allLocations;
 	
@@ -93,24 +95,31 @@ public class MainActivity extends Activity implements OnClickListener {
 	    }
 	}
 	
-	public void switchToResult()
-    {
+	public void switchToResult() {
 		if (isLocationFromSelected == true && isLocationToSelected == true) {
 			
-			if ( locationIdFrom == 0 )
-	        {
+			if ( locationIdFrom == 0 ) {
+				isFromMyLocation = true;
 	        	locationIdFrom = getNearLocationId();
 	        }
+			else {
+				isFromMyLocation = false;
+			}
 	        
-			if ( locationIdTo == 0)
-	        {
+			if ( locationIdTo == 0) {
+				isToMyLocation = true;
 	        	locationIdTo = getNearLocationId();
 	        }
+			else {
+				isToMyLocation = false;
+			}
 			
 			Intent i = new Intent(getBaseContext(), ResultActivity.class);
 	        Bundle bun = new Bundle();
 	        bun.putLong(FROM, locationIdFrom);
 	        bun.putLong(TO, locationIdTo);
+	        bun.putBoolean(IS_FROM_MY_LOCATION, isFromMyLocation);
+	        bun.putBoolean(IS_TO_MY_LOCATION, isToMyLocation);
 	        i.putExtras(bun);
 	        startActivity(i);
 			
@@ -120,8 +129,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
     }
 	
-	public void switchToLocation(Integer n)
-    {
+	public void switchToLocation(Integer n) {
 		Intent i = new Intent(getBaseContext(), LocationActivity.class);
 		Bundle bun = new Bundle();
 		bun.putInt("OPTION_CODE", n);
@@ -179,14 +187,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		// check if GPS enabled
         GPSTracker gpsTracker = new GPSTracker(this);
 
-        if (gpsTracker.canGetLocation())
-        {            
+        if (gpsTracker.canGetLocation()) {            
             currentLocation.setName("My Location");
     		currentLocation.setLat(gpsTracker.getLatitude());
     		currentLocation.setLng(gpsTracker.getLongitude());
         }
-        else
-        {
+        else {
             // Can't get location
             // GPS or Network is not enabled
             // Ask user to enable GPS/network in settings

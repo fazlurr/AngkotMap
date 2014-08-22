@@ -21,7 +21,8 @@ public class DBAngkot {
     private String[] allColumns = { 
     		HelperAngkot.COLUMN_ID,
     		HelperAngkot.COLUMN_NAME,
-    		HelperAngkot.COLUMN_DESCRIPTION };
+    		HelperAngkot.COLUMN_DESCRIPTION,
+    		HelperAngkot.COLUMN_TIME };
  
     // DBHelper diinstantiasi pada constructor
     public DBAngkot(Context context)
@@ -48,6 +49,7 @@ public class DBAngkot {
         ContentValues values = new ContentValues();
         values.put(HelperAngkot.COLUMN_NAME, angkot.getName());
         values.put(HelperAngkot.COLUMN_DESCRIPTION, angkot.getDescription());
+        values.put(HelperAngkot.COLUMN_TIME, angkot.getTime());
  
         // mengeksekusi perintah SQL insert data
         // yang akan mengembalikan sebuah insert ID 
@@ -83,6 +85,7 @@ public class DBAngkot {
     	angkot.setId(cursor.getLong(0));
     	angkot.setName(cursor.getString(1));
     	angkot.setDescription(cursor.getString(2));
+    	angkot.setTime(cursor.getString(3));
  
         //kembalikan sebagai objek barang
         return angkot;
@@ -128,6 +131,18 @@ public class DBAngkot {
         cursor.close();
         return angkot;
     }
+    
+    public Angkot getAngkot(String angkotName)
+    {
+    	Angkot angkot = new Angkot();
+        //select query
+        Cursor cursor = database.query(HelperAngkot.TABLE_NAME, allColumns, HelperAngkot.COLUMN_NAME+"='"+angkotName+"'", null, null, null, null);
+        //ambil data yang pertama
+        cursor.moveToFirst();
+        angkot = cursorToAngkot(cursor);
+        cursor.close();
+        return angkot;
+    }
  
     // update user yang diedit
     public void updateAngkot(Angkot angkot)
@@ -139,6 +154,7 @@ public class DBAngkot {
         //masukkan data sesuai dengan kolom pada database
         args.put(HelperAngkot.COLUMN_NAME, angkot.getName());
         args.put(HelperAngkot.COLUMN_DESCRIPTION, angkot.getDescription());
+        args.put(HelperAngkot.COLUMN_TIME, angkot.getTime());
         // update query
         database.update(HelperAngkot.TABLE_NAME, args, strFilter, null);
     }
