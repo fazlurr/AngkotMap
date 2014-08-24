@@ -21,7 +21,8 @@ public class DBTrack {
     private String[] allColumns = { 
     		HelperTrack.COLUMN_ID,
     		HelperTrack.COLUMN_CONNECTION_ID,
-    		HelperTrack.COLUMN_ANGKOT_ID };
+    		HelperTrack.COLUMN_ANGKOT_ID,
+    		HelperTrack.COLUMN_PATH };
  
     // DBHelper diinstantiasi pada constructor
     public DBTrack(Context context)
@@ -48,6 +49,7 @@ public class DBTrack {
         ContentValues values = new ContentValues();
         values.put(HelperTrack.COLUMN_CONNECTION_ID, track.getConnection_id());
         values.put(HelperTrack.COLUMN_ANGKOT_ID, track.getAngkot_id());
+        values.put(HelperTrack.COLUMN_PATH, track.getPath());
  
         // mengeksekusi perintah SQL insert data
         // yang akan mengembalikan sebuah insert ID 
@@ -83,6 +85,7 @@ public class DBTrack {
     	track.setId(cursor.getLong(0));
     	track.setConnection_id(cursor.getLong(1));
     	track.setAngkot_id(cursor.getLong(2));
+    	track.setPath(cursor.getString(3));
  
         //kembalikan sebagai objek
         return track;
@@ -139,6 +142,7 @@ public class DBTrack {
         //masukkan data sesuai dengan kolom pada database
         args.put(HelperTrack.COLUMN_CONNECTION_ID, track.getConnection_id());
         args.put(HelperTrack.COLUMN_ANGKOT_ID, track.getAngkot_id());
+        args.put(HelperTrack.COLUMN_PATH, track.getPath());
         // update query
         database.update(HelperTrack.TABLE_NAME, args, strFilter, null);
     }

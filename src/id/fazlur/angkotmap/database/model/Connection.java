@@ -4,7 +4,6 @@ public class Connection {
 	private long id;
 	private long location_id_from;
 	private long location_id_to;
-	private long length;
 	
 	public long getId() {
 		return id;
@@ -27,10 +26,4 @@ public class Connection {
 		this.location_id_to = location_id_to;
 	}
 	
-	public long getLength() {
-		return length;
-	}
-	public void setLength(long length) {
-		this.length = length;
-	}
 }

@@ -12,6 +12,7 @@ public class HelperTrack extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CONNECTION_ID = "connection_id";
     public static final String COLUMN_ANGKOT_ID = "angkot_id";
+    public static final String COLUMN_PATH = "path";
     private static final String DB_NAME = DbConst.NAME;
     private static final int DB_VERSION = DbConst.VERSION;
     

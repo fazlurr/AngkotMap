@@ -4,6 +4,7 @@ public class Track {
 	private long id;
 	private long connection_id;
 	private long angkot_id;
+	private String path;
 	
 	public long getId() {
 		return id;
@@ -22,5 +23,11 @@ public class Track {
 	}
 	public void setConnection_id(long connection_id) {
 		this.connection_id = connection_id;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

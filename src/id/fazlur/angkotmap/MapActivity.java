@@ -6,8 +6,10 @@ import java.util.Map;
 
 import id.fazlur.angkotmap.database.crud.DBLocation;
 import id.fazlur.angkotmap.database.crud.DBRoute;
+import id.fazlur.angkotmap.database.crud.DBTrack;
 import id.fazlur.angkotmap.database.model.Location;
 import id.fazlur.angkotmap.database.model.Route;
+import id.fazlur.angkotmap.database.model.Track;
 // import id.fazlur.angkotmap.gmap.GMapV2Direction;
 import id.fazlur.angkotmap.gmap.GetDirectionsAsyncTask;
 
@@ -42,6 +44,8 @@ public class MapActivity extends FragmentActivity {
 	private Route route;
 	private DBLocation dbLocation;
 	private ArrayList<Location> locations;
+	private Track track;
+	private DBTrack dbTrack;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +87,37 @@ public class MapActivity extends FragmentActivity {
         route = dbRoute.getById(routeId);
         
         dbRoute.close();
-                
-        String routeDirections = route.getDirections();
+		
+		String[] splittedSteps = route.getSteps().split(",");
+		
+		String allPath = "";
+		
+		dbTrack = new DBTrack(this);
+		
+		dbTrack.open();
+		
+		for (int l = 0; l < splittedSteps.length; l++)
+		{
+			long trackId = Long.valueOf(splittedSteps[l]);
+
+			track = dbTrack.getById(trackId);
+			
+			String path = track.getPath();
+			
+			if (l == 0)
+			{
+				allPath = path;
+			}
+			else
+			{
+				allPath = allPath + " " + path;
+			}
+		}
+		
+		dbTrack.close();
+		
+//        String routeDirections = route.getDirections();
+		String routeDirections = allPath;
 		
 		String[] routeLatLng = routeDirections.split(" ");
 		

@@ -12,7 +12,6 @@ public class HelperConnection extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_LOCATION_ID_FROM = "location_id_from";
     public static final String COLUMN_LOCATION_ID_TO = "location_id_to";
-    public static final String COLUMN_LENGTH = "length";
     private static final String DB_NAME = DbConst.NAME;
     private static final int DB_VERSION = DbConst.VERSION;
     

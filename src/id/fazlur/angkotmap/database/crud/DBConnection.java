@@ -18,8 +18,7 @@ public class DBConnection {
     private String[] allColumns = { 
     		HelperConnection.COLUMN_ID,
     		HelperConnection.COLUMN_LOCATION_ID_FROM,
-    		HelperConnection.COLUMN_LOCATION_ID_TO,
-    		HelperConnection.COLUMN_LENGTH };
+    		HelperConnection.COLUMN_LOCATION_ID_TO };
  
     public DBConnection(Context context)
     {
@@ -39,7 +38,6 @@ public class DBConnection {
         ContentValues values = new ContentValues();
         values.put(HelperConnection.COLUMN_LOCATION_ID_FROM, connection.getLocation_id_from());
         values.put(HelperConnection.COLUMN_LOCATION_ID_TO, connection.getLocation_id_to());
-        values.put(HelperConnection.COLUMN_LENGTH, connection.getLength());
  
         long insertId = database.insert(HelperConnection.TABLE_NAME, null, values);
   
@@ -62,7 +60,6 @@ public class DBConnection {
     	con.setId(cursor.getLong(0));
     	con.setLocation_id_from(cursor.getLong(1));
     	con.setLocation_id_to(cursor.getLong(2));
-    	con.setLength(cursor.getLong(3));
 
         return con;
     }
@@ -114,7 +111,6 @@ public class DBConnection {
 
         args.put(HelperConnection.COLUMN_LOCATION_ID_FROM, con.getLocation_id_from());
         args.put(HelperConnection.COLUMN_LOCATION_ID_TO, con.getLocation_id_to());
-        args.put(HelperConnection.COLUMN_LENGTH, con.getLength());
 
         database.update(HelperConnection.TABLE_NAME, args, strFilter, null);
     }
